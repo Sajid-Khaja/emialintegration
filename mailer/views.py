@@ -1,11 +1,7 @@
 from django.http import HttpResponse
 from django.core.mail import send_mail
 from django.shortcuts import render
-from django.core.mail import send_mail
-from django.http import HttpResponse
-from django.shortcuts import render
-from django.core.mail import send_mail
-from django.http import HttpResponse
+
 
 def send_test_email(request):
     send_mail(
@@ -49,7 +45,7 @@ def dynamic_email_view(request):
         send_mail(
             subject=subject,
             message=message,
-            from_email='fwani829@gmail.com',  # Your configured sender
+            from_email='fwani829@gmail.com',  
             recipient_list=[to_email],
             fail_silently=False,
         )
