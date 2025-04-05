@@ -131,6 +131,6 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'fwani829@gmail.com'         # Replace with your Gmail
-EMAIL_HOST_PASSWORD = 'lamydxwaulwwsckoJHDHUIEW'        # Will explain how to get it
+EMAIL_HOST_PASSWORD = 'lamydxwaulwwscko'        # Will explain how to get it
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 

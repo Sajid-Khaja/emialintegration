@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.core.mail import send_mail
 from django.shortcuts import render
+from django.core.mail import EmailMessage
 
 
 def send_test_email(request):
@@ -36,23 +37,30 @@ def contact_view(request):
 
 
 
+
+
 def dynamic_email_view(request):
     if request.method == 'POST':
         to_email = request.POST.get('to_email')
         subject = request.POST.get('subject')
         message = request.POST.get('message')
+        uploaded_file = request.FILES.get('attachment')  # 👈 Get uploaded file
 
-        send_mail(
+        email = EmailMessage(
             subject=subject,
-            message=message,
-            from_email='fwani829@gmail.com',  
-            recipient_list=[to_email],
-            fail_silently=False,
+            body=message,
+            from_email='fwani829@gmail.com',
+            to=[to_email],
         )
 
-        return HttpResponse("Email sent successfully!")
+        if uploaded_file:
+            email.attach(uploaded_file.name, uploaded_file.read(), uploaded_file.content_type)
+
+        email.send()
+        return HttpResponse("Email sent successfully with attachment!")
 
     return render(request, 'send_email.html')
+
 
 def front_page(request):
     return render(request, 'front_page.html')  # ✅ Added return
